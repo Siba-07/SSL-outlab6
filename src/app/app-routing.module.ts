@@ -7,7 +7,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   { path: 'contact', component: ContactComponent },
-  { path: 'form', component: FormComponent }
+  { path: 'form', component: FormComponent },
+  { path: '**', redirectTo: 'contact', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  temp: Feedback;
   feedback: Feedback = {
     name: "",
     email: "",
@@ -31,7 +32,7 @@ export class FormComponent implements OnInit {
   }
 
   add(Name: string, Email: string, Feedback: string, Comment: string): void {
-    this.feedback = {
+    this.temp = {
       name: Name,
       email: Email,
       feedback: Feedback,
