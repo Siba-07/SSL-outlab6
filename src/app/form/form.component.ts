@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedService } from '../feed.service'
-import { Feedback } from '../feed'
+import { FeedService } from '../feed.service';
+import { Feedback } from '../feed';
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpClient } from '@angular/common/http';
 
@@ -19,6 +20,12 @@ export class FormComponent implements OnInit {
     feedback: "",
     comment: ""
   }
+  feedbackForm = new FormGroup({
+    name_form: new FormControl(''),
+    email_form: new FormControl(''),
+    feedback_form: new FormControl(''),
+    comment_form: new FormControl('')
+  })
 
   constructor(private feedService: FeedService) { }
 
@@ -37,6 +44,17 @@ export class FormComponent implements OnInit {
       email: Email,
       feedback: Feedback,
       comment: Comment
+    }
+
+    this.feedService.addFeedback(this.feedback as Feedback)
+  }
+
+  onSubmit() {
+    this.feedback = {
+      name: this.feedbackForm.get('name_form').value,
+      email: this.feedbackForm.get('email_form').value,
+      feedback: this.feedbackForm.get('feedback_form').value,
+      comment: this.feedbackForm.get('comment_form').value
     }
     this.feedService.addFeedback(this.feedback as Feedback)
   }
