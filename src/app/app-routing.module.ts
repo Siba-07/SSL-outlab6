@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FormComponent } from './form/form.component'
 import { ContactComponent } from './contact/contact.component'
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   { path: 'contact', component: ContactComponent },
@@ -10,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 
@@ -19,7 +20,8 @@ import { ContactComponent } from './contact/contact.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
