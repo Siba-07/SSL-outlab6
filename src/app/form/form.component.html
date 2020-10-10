@@ -1,10 +1,27 @@
 <h2>Form</h2>
 
-<ul>
-  Feedback
-  <li>Name: {{feedback.name}}</li>
-  <li>Email Id: {{feedback.email}}</li>
-  <li>Feedback: {{feedback.feedback}}</li>
-  <li>Comment: {{feedback.comment}}</li>
-</ul>
+<div>
+  <ul>
+    Feedback
+    <li>Name: {{feedback.name}}</li>
+    <li>Email Id: {{feedback.email}}</li>
+    <li>Feedback: {{feedback.feedback}}</li>
+    <li>Comment: {{feedback.comment}}</li>
+  </ul>
+  <button (click)="getFeedback()">Get feedback</button>
+</div>
+
+<div>
+  <label>Name: <input #Name/></label>
+  <label>Email Id: <input #Email/></label>
+  <label>Feedback: <input #Feedback/></label>
+  <label>Comment: <input #Comment/></label>
+
+  <button (click)="add(
+    Name.value,
+    Email.value,
+    Feedback.value,
+    Comment.value
+    )">Add feedback</button>
+</div>
 

@@ -12,19 +12,32 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  feedback: Feedback;
+  feedback: Feedback = {
+    name: "",
+    email: "",
+    feedback: "",
+    comment: ""
+  }
 
   constructor(private feedService: FeedService) { }
 
-  ngOnInit() {
-    this.getFeedback();
-  }
+  ngOnInit() {}
 
   getFeedback(): void {
     this.feedService.getFeedback()
       .subscribe((data) => {
         this.feedback = data
       });
+  }
+
+  add(Name: string, Email: string, Feedback: string, Comment: string): void {
+    this.feedback = {
+      name: Name,
+      email: Email,
+      feedback: Feedback,
+      comment: Comment
+    }
+    this.feedService.addFeedback(this.feedback as Feedback)
   }
 }
 

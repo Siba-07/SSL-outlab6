@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse ,HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
+import { catchError, retry, tap, map } from 'rxjs/operators';
 
 import { Feedback } from './feed'
 
@@ -21,6 +21,10 @@ export class FeedService {
 
   getFeedback(): Observable<Feedback> {
     return this.http.get<Feedback>(this.getUrl)
+  }
+
+  addFeedback(feedback: Feedback): Observable<Feedback> {
+    return this.http.post<Feedback>(this.postUrl, feedback, this.httpOptions)
   }
 
 }
