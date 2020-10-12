@@ -35,10 +35,10 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.feedback = {
-      name: "test",
-      email: "test@gmail.com",
-      feedback: "test",
-      comment: "test"
+      name: "",
+      email: "",
+      feedback: "",
+      comment: ""
     }
   }
 

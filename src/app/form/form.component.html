@@ -18,9 +18,9 @@
   <label>Email Id: <input type="text" formControlName="email_form"></label>
   <p>
     <label>Feedback: 
-      Okay: <input type="radio" value="Okay" formControlName="feedback_form">
-      Great: <input type="radio" value="Great" formControlName="feedback_form">
-      Not good: <input type="radio" value="Not good" formControlName="feedback_form">
+      <input type="radio" value="Okay" formControlName="feedback_form"> Okay
+      <input type="radio" value="Great" formControlName="feedback_form"> Great
+      <input type="radio" value="Not good" formControlName="feedback_form"> Not good
     </label>
   </p>
 
@@ -30,8 +30,10 @@
   <button (click)="onSubmit()" type="submit" >Submit</button>
 
   <p>
-    {{ feedback.name }}
-    {{ feedbackForm.get('email_form').value }}
+    Name: {{ feedbackForm.get('name_form').value }}<br>
+    Email Id: {{ feedbackForm.get('email_form').value }}<br>
+    Feedback: {{ feedbackForm.get('feedback_form').value }}<br>
+    Comment: {{ feedbackForm.get('comment_form').value }}
     {{ errorMessage }}
   </p>
 </div>
