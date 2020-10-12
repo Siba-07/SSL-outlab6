@@ -20,5 +20,11 @@
   <label>Comment: <input type="text" formControlName="comment_form"></label>
   </form>
 
-  <button (click)="onSubmit()" type="submit" [disabled]="!feedbackForm.valid">Submit</button>
+  <button (click)="onSubmit()" type="submit" >Submit</button>
+
+  <p>
+    {{ feedback.name }}
+    {{ feedbackForm.get('email_form').value }}
+    {{ errorMessage }}
+  </p>
 </div>

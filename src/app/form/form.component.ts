@@ -4,7 +4,7 @@ import { FeedService } from '../feed.service';
 import { Feedback } from '../feed';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -14,12 +14,12 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
 })
 export class FormComponent implements OnInit {
   temp: Feedback;
-  feedback: Feedback = {
-    name: "",
-    email: "",
-    feedback: "",
-    comment: ""
-  }
+  feedback: Feedback;
+  errorMessage: string;
+  httpOptions = {
+    headers: new HttpHeaders ({ 'Content-Type': 'application/json' })
+  };
+
   feedbackForm = new FormGroup({
     name_form: new FormControl(''),
     email_form: new FormControl(''),
@@ -27,26 +27,22 @@ export class FormComponent implements OnInit {
     comment_form: new FormControl('')
   })
 
-  constructor(private feedService: FeedService) { }
+  constructor(private feedService: FeedService, private http: HttpClient ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.feedback = {
+      name: "test",
+      email: "test@gmail.com",
+      feedback: "test",
+      comment: "test"
+    }
+  }
 
   getFeedback(): void {
     this.feedService.getFeedback()
       .subscribe((data) => {
         this.feedback = data
       });
-  }
-
-  add(Name: string, Email: string, Feedback: string, Comment: string): void {
-    this.temp = {
-      name: Name,
-      email: Email,
-      feedback: Feedback,
-      comment: Comment
-    }
-
-    this.feedService.addFeedback(this.feedback as Feedback)
   }
 
   onSubmit() {
@@ -57,6 +53,15 @@ export class FormComponent implements OnInit {
       comment: this.feedbackForm.get('comment_form').value
     }
     this.feedService.addFeedback(this.feedback as Feedback)
+      .subscribe({
+        next: data => {
+          this.feedback = data
+        },
+        error: error => {
+          this.errorMessage = error.message;
+          console.error('Error', error);
+        }
+      })
   }
 }
 
