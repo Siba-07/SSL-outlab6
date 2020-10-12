@@ -24,9 +24,12 @@ export class FormComponent implements OnInit {
   };
 
   feedbackForm = new FormGroup({
-    name_form: new FormControl(''),
-    email_form: new FormControl(''),
-    feedback_form: new FormControl(''),
+    name_form: new FormControl('', Validators.required),
+    email_form: new FormControl('', Validators.compose([
+      Validators.required, 
+      // Validators.email
+    ])),
+    feedback_form: new FormControl('', Validators.required),
     comment_form: new FormControl('')
   })
 
@@ -47,6 +50,13 @@ export class FormComponent implements OnInit {
       .subscribe((data) => {
         this.feedback = data
       });
+
+      // this.feedbackForm.patchValue({
+      //   name_form: this.feedback.name,
+      //   email_form: this.feedback.email,
+      //   feedback_form: this.feedback.feedback,
+      //   comment_form: this.feedback.comment,
+      // })
   }
 
   onSubmit() {
