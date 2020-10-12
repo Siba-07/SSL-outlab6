@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatRadioModule } from '@angular/material/radio'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,10 @@ import { ContactComponent } from './contact/contact.component';
     MatToolbarModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatRadioModule,
+  ],
+  exports: [
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

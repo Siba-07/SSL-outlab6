@@ -5,6 +5,7 @@ import { Feedback } from '../feed';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class FormComponent implements OnInit {
   temp: Feedback;
   feedback: Feedback;
   errorMessage: string;
+  feedbackOptions: string[] = ['Great', 'Okay', 'Not Good'];
+  feedopt: string;
   httpOptions = {
     headers: new HttpHeaders ({ 'Content-Type': 'application/json' })
   };
@@ -27,7 +30,8 @@ export class FormComponent implements OnInit {
     comment_form: new FormControl('')
   })
 
-  constructor(private feedService: FeedService, private http: HttpClient ) { }
+
+  constructor(private feedService: FeedService ) { }
 
   ngOnInit() {
     this.feedback = {

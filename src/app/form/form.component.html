@@ -16,8 +16,15 @@
   <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
   <label>Name: <input type="text" formControlName="name_form"></label>
   <label>Email Id: <input type="text" formControlName="email_form"></label>
-  <label>Feedback: <input type="text" formControlName="feedback_form"></label>
-  <label>Comment: <input type="text" formControlName="comment_form"></label>
+  <p>
+    <label>Feedback: 
+      Okay: <input type="radio" value="Okay" formControlName="feedback_form">
+      Great: <input type="radio" value="Great" formControlName="feedback_form">
+      Not good: <input type="radio" value="Not good" formControlName="feedback_form">
+    </label>
+  </p>
+
+  <label>Comment: <textarea type="text" formControlName="comment_form"></textarea></label>
   </form>
 
   <button (click)="onSubmit()" type="submit" >Submit</button>
