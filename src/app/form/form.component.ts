@@ -43,6 +43,7 @@ export class FormComponent implements OnInit {
       feedback: "",
       comment: ""
     }
+    this.errorMessage = "";
   }
 
   getFeedback(): void {
