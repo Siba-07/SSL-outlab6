@@ -5,10 +5,10 @@
       <strong>Received Data</strong>
       <br><br>
       Feedback
-      <li>Name: {{feedbacks.name}}</li>
-      <li>Email Id: {{feedbacks.email}}</li>
-      <li>Feedback: {{feedbacks.feedback}}</li>
-      <li>Comment: {{feedbacks.comment}}</li>
+      <li>Name: {{feedbacks?.name}}</li>
+      <li>Email Id: {{feedbacks?.email}}</li>
+      <li>Feedback: {{feedbacks?.feedback}}</li>
+      <li>Comment: {{feedbacks?.comment}}</li>
     </ul>
     <button class= "button" (click)="getData()" type="submit" >Refresh Data</button>
   </div>
