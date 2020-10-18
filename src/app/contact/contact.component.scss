@@ -2,11 +2,37 @@
     color: white;
     font-size: 25px;
     font-weight: bold;
-  }
-  
-  .design {
+}
+
+.design {
     @include another;
     background-color: green;
-  }
+}
 
-//   https://www.w3schools.com/sass/showsass.php?filename=demo_sass_mixin1
+.top {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left-contact {
+    float: left;
+    margin-left: 30%;
+    width: 20%;
+}
+
+.right-contact {
+    float: left;
+    width: 40%;
+}
+
+.mid2 {
+    float: left;
+    margin-left: 42%;
+    width: 40%;
+}

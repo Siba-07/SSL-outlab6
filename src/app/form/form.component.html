@@ -1,38 +1,61 @@
-<h2>This is the data that is received</h2>
 
-<div>
-  <ul>
-    Feedback
-    <li>Name: {{feedbacks.name}}</li>
-    <li>Email Id: {{feedbacks.email}}</li>
-    <li>Feedback: {{feedbacks.feedback}}</li>
-    <li>Comment: {{feedbacks.comment}}</li>
-  </ul>
+<div class="row top">
+  <div class="left">
+    <ul>
+      <strong>Received Data</strong>
+      <br><br>
+      Feedback
+      <li>Name: {{feedbacks.name}}</li>
+      <li>Email Id: {{feedbacks.email}}</li>
+      <li>Feedback: {{feedbacks.feedback}}</li>
+      <li>Comment: {{feedbacks.comment}}</li>
+    </ul>
+    <button class= "button" (click)="getData()" type="submit" >Refresh Data</button>
+  </div>
+
+  <div class="right">
+      <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <label>Name: <input type="text" formControlName="name_form"></label><br><br>
+      <label>Email Id: <input type="text" formControlName="email_form"></label>
+      <p>
+        <label>Feedback: 
+          <input type="radio" value="Okay" formControlName="feedback_form"> Okay
+          <input type="radio" value="Great" formControlName="feedback_form"> Great
+          <input type="radio" value="Not good" formControlName="feedback_form"> Not good
+        </label>
+      </p>
+
+      <label>Comment<br> <textarea type="text" formControlName="comment_form"></textarea></label>
+    </form>
+
+    <button class= "button" (click)="onSubmit()" type="submit" >Submit</button>
+  </div>
 </div>
 
 
-<div>
-  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-  <label>Name: <input type="text" formControlName="name_form"></label>
-  <label>Email Id: <input type="text" formControlName="email_form"></label>
-  <p>
-    <label>Feedback: 
-      <input type="radio" value="Okay" formControlName="feedback_form"> Okay
-      <input type="radio" value="Great" formControlName="feedback_form"> Great
-      <input type="radio" value="Not good" formControlName="feedback_form"> Not good
-    </label>
-  </p>
 
-  <label>Comment: <textarea type="text" formControlName="comment_form"></textarea></label>
-  </form>
+<div class="mid">
+  <div class="row"  *ngIf="showMsg">
+    <div class="col-xs-12 success-msg message">
+      <p>
+          <strong>Feedback added successfully!</strong>
+      </p>
+    </div>
+  </div>
+  <div class="row"  *ngIf="showError">
+    <div class="col-xs-12 error-msg message">
+      <strong>Error! Invalid request.</strong> Check your form data again.<br><br>
+      Error Message: {{ errorMessage }}
+    </div>
+  </div>
 
-  <button class= "button" (click)="onSubmit()" type="submit" >Submit</button>
-<h2>This is the data that is posted and the response</h2>
-  <p>
-    Name: {{ feedbackForm.get('name_form').value }}<br>
-    Email Id: {{ feedbackForm.get('email_form').value }}<br>
-    Feedback: {{ feedbackForm.get('feedback_form').value }}<br>
-    Comment: {{ feedbackForm.get('comment_form').value }}<br>
-    Error: {{ errorMessage }}
-  </p>
+  <div class="row">
+    <h3>This is the data that is posted and the response</h3>
+    <p>
+      Name: {{ feedbackForm.get('name_form').value }}<br>
+      Email Id: {{ feedbackForm.get('email_form').value }}<br>
+      Feedback: {{ feedbackForm.get('feedback_form').value }}<br>
+      Comment: {{ feedbackForm.get('comment_form').value }}<br>
+    </p>
+  </div>
 </div>

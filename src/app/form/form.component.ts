@@ -19,6 +19,8 @@ export class FormComponent implements OnInit {
   feedbacks: Feedback;
   errorMessage: string;
   feedbackOptions: string[] = ['Great', 'Okay', 'Not Good'];
+  showMsg: boolean = false;
+  showError: boolean = false;
   feedopt: string;
   httpOptions = {
     headers: new HttpHeaders ({ 'Content-Type': 'application/json' })
@@ -38,6 +40,10 @@ export class FormComponent implements OnInit {
   constructor(private feedService: FeedService ) {}
 
   ngOnInit() {
+    this.getData()
+  }
+  
+  getData() {
     this.feedService.getFeedback()
       .subscribe((data) => {
         this.feedbacks = data
@@ -60,11 +66,14 @@ export class FormComponent implements OnInit {
     this.feedService.addFeedback(this.feedbacks as Feedback)
       .subscribe({
         next: data => {
-          this.feedbacks = data
+          this.feedbacks = data;
+          this.showMsg = true;
         },
         error: error => {
           this.errorMessage = error.message;
-          console.error('Error', error);
+          this.showError = true;
+          this.showMsg = false;
+          // console.error('Error', error);
         }
       })
   }
