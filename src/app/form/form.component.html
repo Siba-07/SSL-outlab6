@@ -1,14 +1,13 @@
-<h2>Form</h2>
+<h2>This is the data that is received</h2>
 
 <div>
   <ul>
     Feedback
-    <li>Name: {{feedback.name}}</li>
-    <li>Email Id: {{feedback.email}}</li>
-    <li>Feedback: {{feedback.feedback}}</li>
-    <li>Comment: {{feedback.comment}}</li>
+    <li>Name: {{feedbacks.name}}</li>
+    <li>Email Id: {{feedbacks.email}}</li>
+    <li>Feedback: {{feedbacks.feedback}}</li>
+    <li>Comment: {{feedbacks.comment}}</li>
   </ul>
-  <button (click)="getFeedback()">Get feedback</button>
 </div>
 
 
@@ -27,8 +26,8 @@
   <label>Comment: <textarea type="text" formControlName="comment_form"></textarea></label>
   </form>
 
-  <button (click)="onSubmit()" type="submit" >Submit</button>
-
+  <button class= "button" (click)="onSubmit()" type="submit" >Submit</button>
+<h2>This is the data that is posted and the response</h2>
   <p>
     Name: {{ feedbackForm.get('name_form').value }}<br>
     Email Id: {{ feedbackForm.get('email_form').value }}<br>

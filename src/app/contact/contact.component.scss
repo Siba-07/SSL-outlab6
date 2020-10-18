@@ -1,0 +1,12 @@
+@mixin another {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .design {
+    @include another;
+    background-color: green;
+  }
+
+//   https://www.w3schools.com/sass/showsass.php?filename=demo_sass_mixin1

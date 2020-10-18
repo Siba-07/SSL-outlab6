@@ -8,6 +8,7 @@ import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 
 
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -15,7 +16,7 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 })
 export class FormComponent implements OnInit {
   temp: Feedback;
-  feedback: Feedback;
+  feedbacks: Feedback;
   errorMessage: string;
   feedbackOptions: string[] = ['Great', 'Okay', 'Not Good'];
   feedopt: string;
@@ -34,43 +35,32 @@ export class FormComponent implements OnInit {
   })
 
 
-  constructor(private feedService: FeedService ) { }
+  constructor(private feedService: FeedService ) {}
 
   ngOnInit() {
-    this.feedback = {
-      name: "",
-      email: "",
-      feedback: "",
-      comment: ""
-    }
-    this.errorMessage = "";
-  }
-
-  getFeedback(): void {
     this.feedService.getFeedback()
       .subscribe((data) => {
-        this.feedback = data
+        this.feedbacks = data
+        this.feedbackForm.setValue({
+          name_form: this.feedbacks.name,
+          email_form: this.feedbacks.email,
+          feedback_form: this.feedbacks.feedback,
+          comment_form: this.feedbacks.comment,
+        })
       });
-
-      // this.feedbackForm.patchValue({
-      //   name_form: this.feedback.name,
-      //   email_form: this.feedback.email,
-      //   feedback_form: this.feedback.feedback,
-      //   comment_form: this.feedback.comment,
-      // })
   }
 
   onSubmit() {
-    this.feedback = {
+    this.feedbacks = {
       name: this.feedbackForm.get('name_form').value,
       email: this.feedbackForm.get('email_form').value,
       feedback: this.feedbackForm.get('feedback_form').value,
       comment: this.feedbackForm.get('comment_form').value
     }
-    this.feedService.addFeedback(this.feedback as Feedback)
+    this.feedService.addFeedback(this.feedbacks as Feedback)
       .subscribe({
         next: data => {
-          this.feedback = data
+          this.feedbacks = data
         },
         error: error => {
           this.errorMessage = error.message;
