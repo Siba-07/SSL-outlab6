@@ -44,6 +44,8 @@ export class FormComponent implements OnInit {
   }
   
   getData() {
+    this.showError = false;
+    this.showMsg = false;
     this.feedService.getFeedback()
       .subscribe((data) => {
         this.feedbacks = data
@@ -57,6 +59,8 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showMsg = false;
+    this.showError = false;
     this.feedbacks = {
       name: this.feedbackForm.get('name_form').value,
       email: this.feedbackForm.get('email_form').value,
